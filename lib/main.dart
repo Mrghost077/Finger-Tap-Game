@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MaterialApp(
+    home: MainPage(),
+  ));
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+class MainPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return Scaffold(
+      body: Column(
+        children: [
+          Container(
+            color: Colors.blueAccent,
+            height: MediaQuery.of(context).size.height/2,
+            width: double.infinity,
+          ),
+
+          Container(
+            color: Colors.redAccent,
+            height: MediaQuery.of(context).size.height/2,
+            width: double.infinity,
+          )
+        ],
       ),
     );
   }
