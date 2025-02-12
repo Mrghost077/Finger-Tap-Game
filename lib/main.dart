@@ -94,7 +94,7 @@ class _GamePageState extends State<GamePage> {
               });
 
               if (blueCardHeight > winningHeight){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultPage(blueCardScore,"b")));
             }
             },
 
@@ -140,7 +140,7 @@ class _GamePageState extends State<GamePage> {
               });
 
               if (redCardHeight > winningHeight){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ResultPage(redCardScore,"a")));
             }
             },
 
@@ -181,8 +181,48 @@ class _GamePageState extends State<GamePage> {
 }
 
 class ResultPage extends StatelessWidget{
+
+  int score = 0;
+  String player = "";
+
+  ResultPage(this.score,this.player);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: player == "a" ? Colors.redAccent : Colors.blueAccent,
+      appBar: AppBar(
+        title: Text("Results"),
+        backgroundColor: Colors.white,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(score.toString(),
+            style: TextStyle(
+              fontSize: 60,
+              fontWeight: FontWeight.bold,
+            ),),
+        
+            Text( player == "a" ? "Player A Won!" : "Player B Won!",
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.w400
+            ),),
+
+            MaterialButton(
+              onPressed: (){
+                
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+              child: Text("Restart Game"),
+              color: Colors.white,
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
